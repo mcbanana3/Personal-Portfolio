@@ -6,6 +6,7 @@ import { config } from "./data/portfolio";
 import Preloader from "./components/Preloader";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import About from "./components/About";
 
 export default function App() {
   const { theme, toggleTheme } = useTheme();
@@ -35,14 +36,9 @@ export default function App() {
 
       <main>
         <Hero />
+        <About />
 
-        {/* Placeholder sections — filled in upcoming phases.
-            IDs must stay so the navbar highlights correctly. */}
-        <section id="about" className="section container">
-          <span className="section-label">About</span>
-          <h2 className="section-title">Coming in Phase 3</h2>
-        </section>
-
+        {/* Placeholder sections — filled in upcoming phases. */}
         <section id="projects" className="section container">
           <span className="section-label">Projects</span>
           <h2 className="section-title">Coming in Phase 4</h2>
