@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
+import Skills from "./components/Skills";
 
 export default function App() {
   const { theme, toggleTheme } = useTheme();
@@ -38,13 +39,9 @@ export default function App() {
         <Hero />
         <About />
         <Projects />
+        <Skills />
 
         {/* Placeholder sections — filled in upcoming phases. */}
-        <section id="skills" className="section container">
-          <span className="section-label">Skills</span>
-          <h2 className="section-title">Coming in Phase 5</h2>
-        </section>
-
         <section id="journey" className="section container">
           <span className="section-label">Journey</span>
           <h2 className="section-title">Coming in Phase 6</h2>

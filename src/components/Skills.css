@@ -1,0 +1,153 @@
+.skills__head {
+  margin-bottom: var(--space-xl);
+}
+
+/* ---------------- BENTO GRID ---------------- */
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+/* ---------------- CATEGORY TILE ---------------- */
+.skill-group {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-lg);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out);
+}
+
+.skill-group:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.skill-group__spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    240px circle at var(--sx, -100px) var(--sy, -100px),
+    color-mix(in srgb, var(--accent) 14%, transparent),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-med) var(--ease-out);
+}
+
+.skill-group:hover .skill-group__spotlight {
+  opacity: 1;
+}
+
+.skill-group__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+  position: relative;
+  z-index: 1;
+}
+
+.skill-group__title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+}
+
+.skill-group__count {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  padding-inline: 0.4rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+}
+
+/* ---------------- CHIP LIST (bullet fix lives here) ---------------- */
+.skill-group__list {
+  list-style: none;      /* kill any inherited marker */
+  margin: 0;
+  padding: 0;            /* kill default <ul> left padding that shows the dot */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.skill-group__list > li {
+  list-style: none;
+}
+
+.skill-group__list > li::marker {
+  content: "";           /* belt-and-suspenders: no marker glyph */
+}
+
+/* ---------------- SKILL CHIP ---------------- */
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.8rem 0.45rem 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  cursor: default;
+  will-change: transform;
+  transition: background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.skill-chip:hover {
+  background: var(--surface-hover);
+  border-color: var(--accent);
+}
+
+.skill-chip__name {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* ---------------- SKILL ICON MONOGRAM (fixed size in CSS) ---------------- */
+.skill-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: hsl(var(--icon-hue, 260) 70% 92%);
+  background: linear-gradient(
+    145deg,
+    hsl(var(--icon-hue, 260) 60% 45%),
+    hsl(calc(var(--icon-hue, 260) + 35) 60% 40%)
+  );
+  border-radius: 8px;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 900px) {
+  .skills__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .skills__grid {
+    grid-template-columns: 1fr;
+  }
+}
