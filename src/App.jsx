@@ -1,50 +1,67 @@
+import { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { useTheme } from "./hooks/useTheme";
-import { portfolio } from "./data/portfolio";
-import { Moon, Sun } from "lucide-react";
+import { config } from "./data/portfolio";
+
+import Preloader from "./components/Preloader";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
 
 export default function App() {
   const { theme, toggleTheme } = useTheme();
+  const [loading, setLoading] = useState(config.enablePreloader);
+
+  // Lock scroll while the preloader is visible
+  useEffect(() => {
+    document.body.style.overflow = loading ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [loading]);
 
   return (
     <>
-      <a href="#main" className="skip-link">
+      <a href="#home" className="skip-link">
         Skip to content
       </a>
 
-      <main id="main" className="container section">
-        <span className="section-label">Phase 1 — Setup Complete</span>
+      <AnimatePresence mode="wait">
+        {loading && (
+          <Preloader key="preloader" onComplete={() => setLoading(false)} />
+        )}
+      </AnimatePresence>
 
-        <h1 className="section-title" style={{ fontSize: "var(--fs-3xl)" }}>
-          {portfolio.name}
-        </h1>
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
 
-        <p className="text-muted" style={{ maxWidth: "48ch" }}>
-          {portfolio.tagline}
-        </p>
+      <main>
+        <Hero />
 
-        <button
-          onClick={toggleTheme}
-          className="tile"
-          aria-label="Toggle color theme"
-          style={{
-            marginTop: "var(--space-lg)",
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.6rem",
-            padding: "0.7rem 1.1rem",
-            color: "var(--text)",
-          }}
-        >
-          {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-          {theme === "dark" ? "Light mode" : "Dark mode"}
-        </button>
+        {/* Placeholder sections — filled in upcoming phases.
+            IDs must stay so the navbar highlights correctly. */}
+        <section id="about" className="section container">
+          <span className="section-label">About</span>
+          <h2 className="section-title">Coming in Phase 3</h2>
+        </section>
 
-        <p
-          className="text-muted"
-          style={{ marginTop: "var(--space-xl)", fontSize: "var(--fs-sm)" }}
-        >
-          Theme, tokens, and data files are wired up. Ready for Phase 2.
-        </p>
+        <section id="projects" className="section container">
+          <span className="section-label">Projects</span>
+          <h2 className="section-title">Coming in Phase 4</h2>
+        </section>
+
+        <section id="skills" className="section container">
+          <span className="section-label">Skills</span>
+          <h2 className="section-title">Coming in Phase 5</h2>
+        </section>
+
+        <section id="journey" className="section container">
+          <span className="section-label">Journey</span>
+          <h2 className="section-title">Coming in Phase 6</h2>
+        </section>
+
+        <section id="contact" className="section container">
+          <span className="section-label">Contact</span>
+          <h2 className="section-title">Coming in Phase 8</h2>
+        </section>
       </main>
     </>
   );

@@ -1,0 +1,191 @@
+/* ---------------- SHARED BUTTONS (used site-wide) ---------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  transition: transform var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out), border-color var(--dur-fast);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+.btn--primary:hover {
+  opacity: 0.92;
+}
+
+.btn--ghost {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+.btn--ghost:hover {
+  background: var(--surface-hover);
+}
+
+/* ---------------- HERO ---------------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-bg);
+  pointer-events: none;
+}
+
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    #000 30%,
+    transparent 75%
+  );
+}
+
+.hero__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    360px circle at var(--mx, 50%) var(--my, 40%),
+    color-mix(in srgb, var(--accent) 18%, transparent),
+    transparent 60%
+  );
+  transition: background 0.15s ease-out;
+}
+
+.hero__content {
+  position: relative;
+  z-index: var(--z-content);
+  padding-top: 6rem;
+}
+
+.hero__hello {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  color: var(--text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.hero__name {
+  font-size: var(--fs-3xl);
+  font-weight: 800;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 0.98;
+  margin-bottom: var(--space-md);
+}
+
+.hero__name-char {
+  display: inline-block;
+  will-change: transform;
+}
+
+.hero__role-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+.hero__role-prefix {
+  color: var(--text-muted);
+}
+
+.hero__role-slot {
+  position: relative;
+  display: inline-block;
+  height: 1.2em;
+  overflow: hidden;
+}
+
+.hero__role {
+  display: inline-block;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.hero__tagline {
+  max-width: 46ch;
+  color: var(--text-muted);
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.hero__socials {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.hero__social {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.hero__social:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+  transform: translateY(-3px);
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-faint);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  z-index: var(--z-content);
+}
+
+@media (max-width: 600px) {
+  .hero__role-wrap {
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+}
