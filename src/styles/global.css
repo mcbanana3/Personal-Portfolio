@@ -167,3 +167,28 @@ ul {
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------------- PHASE 9: focus + motion hardening ---------------- */
+
+/* Stronger, consistent keyboard focus everywhere interactive */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[role="tab"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Respect reduced motion for the custom cursor trailing ring */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-ring {
+    transition: none;
+  }
+}
+
+/* Images never overflow their lazy containers */
+img {
+  height: auto;
+}

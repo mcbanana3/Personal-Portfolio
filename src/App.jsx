@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useTheme } from "./hooks/useTheme";
 import { config } from "./data/portfolio";
@@ -6,14 +6,27 @@ import { config } from "./data/portfolio";
 import Preloader from "./components/Preloader";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import About from "./components/About";
-import Projects from "./components/Projects";
-import Skills from "./components/Skills";
-import Journey from "./components/Journey";
-import Certifications from "./components/Certifications";
-import Terminal from "./components/Terminal";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import CustomCursor from "./components/CustomCursor";
+import ScrollProgress from "./components/ScrollProgress";
+
+// Lazy-loaded, below-the-fold sections (code-split for performance)
+const About = lazy(() => import("./components/About"));
+const Projects = lazy(() => import("./components/Projects"));
+const Skills = lazy(() => import("./components/Skills"));
+const Journey = lazy(() => import("./components/Journey"));
+const Certifications = lazy(() => import("./components/Certifications"));
+const Terminal = lazy(() => import("./components/Terminal"));
+const Contact = lazy(() => import("./components/Contact"));
+const Footer = lazy(() => import("./components/Footer"));
+
+function SectionFallback() {
+  return (
+    <div
+      style={{ minHeight: "40vh" }}
+      aria-hidden="true"
+    />
+  );
+}
 
 export default function App() {
   const { theme, toggleTheme } = useTheme();
@@ -32,6 +45,9 @@ export default function App() {
         Skip to content
       </a>
 
+      <CustomCursor />
+      <ScrollProgress />
+
       <AnimatePresence mode="wait">
         {loading && (
           <Preloader key="preloader" onComplete={() => setLoading(false)} />
@@ -40,18 +56,23 @@ export default function App() {
 
       <Navbar theme={theme} toggleTheme={toggleTheme} />
 
-      <main>
+      <main id="main">
         <Hero />
-        <About />
-        <Projects />
-        <Skills />
-        <Journey />
-        <Certifications />
-        {config.showTerminal && <Terminal />}
-        <Contact />
+
+        <Suspense fallback={<SectionFallback />}>
+          <About />
+          <Projects />
+          <Skills />
+          <Journey />
+          <Certifications />
+          {config.showTerminal && <Terminal />}
+          <Contact />
+        </Suspense>
       </main>
 
-      <Footer />
+      <Suspense fallback={<SectionFallback />}>
+        <Footer />
+      </Suspense>
     </>
   );
 }

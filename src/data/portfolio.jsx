@@ -3,8 +3,8 @@
 // ============================================================
 
 export const portfolio = {
-  name: "Your Name",
-  initials: "YN", // used by the preloader
+  name: "Aryan Yalavarthi",
+  initials: "AY", // used by the preloader
   roles: [
     "Frontend Developer",
     "Creative Engineer",
@@ -16,15 +16,15 @@ export const portfolio = {
   shortBio:
     "I'm a developer focused on crafting clean, performant, and memorable web experiences. I care about the details most people never notice.",
 
-  location: "Your City, Country",
-  email: "you@example.com",
+  location: "Guntur, Andhra Pradesh, India",
+  email: "yalavarthiaryan068@gmail.com",
   resumeUrl: "/resume.pdf",
   profileImage: "/profile/profile.jpg",
 
   // Social links — leave a value empty ("") to hide that link in the UI
   socials: {
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
+    github: "https://github.com/mcbanana3",
+    linkedin: "https://www.linkedin.com/in/aryanyalavarthi/",
     twitter: "",
   },
 
