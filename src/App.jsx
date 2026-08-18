@@ -11,6 +11,9 @@ import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import Journey from "./components/Journey";
 import Certifications from "./components/Certifications";
+import Terminal from "./components/Terminal";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 export default function App() {
   const { theme, toggleTheme } = useTheme();
@@ -44,13 +47,11 @@ export default function App() {
         <Skills />
         <Journey />
         <Certifications />
-
-        {/* Placeholder section — filled in Phase 8. */}
-        <section id="contact" className="section container">
-          <span className="section-label">Contact</span>
-          <h2 className="section-title">Coming in Phase 8</h2>
-        </section>
+        {config.showTerminal && <Terminal />}
+        <Contact />
       </main>
+
+      <Footer />
     </>
   );
 }

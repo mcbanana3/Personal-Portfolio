@@ -1,0 +1,164 @@
+.terminal-section__head {
+  margin-bottom: var(--space-lg);
+}
+
+.terminal {
+  width: 100%;
+  max-width: 820px;
+  margin-inline: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #0c0c12;
+  box-shadow: var(--shadow-md);
+  cursor: text;
+}
+
+/* Keep the terminal dark even in light theme (it's a "device") */
+[data-theme="light"] .terminal {
+  background: #0c0c12;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+/* ---------------- TITLE BAR ---------------- */
+.terminal__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 0.9rem;
+  background: #16161f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.terminal__dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+.terminal__dot--red {
+  background: #ff5f57;
+}
+.terminal__dot--yellow {
+  background: #febc2e;
+}
+.terminal__dot--green {
+  background: #28c840;
+}
+
+.terminal__bar-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: auto;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ---------------- BODY ---------------- */
+.terminal__body {
+  padding: var(--space-md);
+  height: 340px;
+  overflow-y: auto;
+  font-family: "SF Mono", "Fira Code", "Consolas", ui-monospace, monospace;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #d6d6e0;
+}
+
+.terminal__body::-webkit-scrollbar {
+  width: 8px;
+}
+.terminal__body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+
+.terminal__line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.terminal__line.is-output .terminal__text {
+  color: #9ea0b5;
+}
+
+.terminal__prompt {
+  color: #7c6cff;
+  flex-shrink: 0;
+}
+
+.terminal__line.is-input .terminal__text {
+  color: #eaeaf2;
+}
+
+/* ---------------- ACTIVE INPUT LINE ---------------- */
+.terminal__line.is-active {
+  align-items: center;
+}
+
+.terminal__input {
+  flex: 1;
+  min-width: 40px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #eaeaf2;
+  font-family: inherit;
+  font-size: inherit;
+  caret-color: transparent; /* we draw our own cursor */
+  padding: 0;
+}
+
+.terminal__cursor {
+  width: 8px;
+  height: 1.05em;
+  background: #7c6cff;
+  animation: term-blink 1.05s steps(1) infinite;
+  flex-shrink: 0;
+  margin-left: -0.35rem;
+}
+
+@keyframes term-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.terminal-section__hint {
+  text-align: center;
+  margin-top: var(--space-md);
+  font-size: var(--fs-sm);
+}
+
+.terminal-section__hint code {
+  font-family: "SF Mono", "Fira Code", "Consolas", ui-monospace, monospace;
+  padding: 0.1rem 0.4rem;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal__cursor {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 560px) {
+  .terminal__body {
+    height: 300px;
+    font-size: 0.8rem;
+  }
+}
