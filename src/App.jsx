@@ -7,12 +7,12 @@ import Preloader from "./components/Preloader";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Projects from "./components/Projects";
 
 export default function App() {
   const { theme, toggleTheme } = useTheme();
   const [loading, setLoading] = useState(config.enablePreloader);
 
-  // Lock scroll while the preloader is visible
   useEffect(() => {
     document.body.style.overflow = loading ? "hidden" : "";
     return () => {
@@ -37,13 +37,9 @@ export default function App() {
       <main>
         <Hero />
         <About />
+        <Projects />
 
         {/* Placeholder sections — filled in upcoming phases. */}
-        <section id="projects" className="section container">
-          <span className="section-label">Projects</span>
-          <h2 className="section-title">Coming in Phase 4</h2>
-        </section>
-
         <section id="skills" className="section container">
           <span className="section-label">Skills</span>
           <h2 className="section-title">Coming in Phase 5</h2>
